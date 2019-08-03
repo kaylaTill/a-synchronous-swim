@@ -6,11 +6,20 @@ $('body').on('keydown', (event) => {
     var direction = arrowPress[1];
 
     // GET CALL
-    $.get("http://localhost:3000/", function(data, status) {
-      console.log("Responding to server's directions: " + data);
-      SwimTeam.move(data.toLowerCase());
+    // $.get("http://localhost:3000/", function(data, status) {
+    //   console.log("Responding to server's directions: " + data);
+    //   SwimTeam.move(data.toLowerCase());
+    // });
+
+    // POST CALL
+    $.ajax({
+      data: direction.toLowerCase(),
+      type: "POST",
+      url: "http://localhost:3000/",
+      success: SwimTeam.move(direction.toLowerCase())
     });
-  }
+
+  } // if
 });
 
 console.log('Client is running in the browser!');

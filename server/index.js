@@ -3,13 +3,11 @@ keypressHandler.initialize(message => console.log(`Message received: ${message}`
 
 const httpHandler = require('./js/httpHandler');
 
-// const WebSocketServer = require('websocket').server;
 const http = require('http');
 const server = http.createServer(httpHandler.router);
 
 // "router" is a "requestListener" function that runs every time a request to that server is made.
 // AKA httpHandler.router is invoked every time someone makes a request to "server"
-
 const port = 3000;
 const ip = '127.0.0.1';
 server.listen(port, ip);
@@ -17,6 +15,9 @@ server.listen(port, ip);
 console.log('Server is running in the terminal!');
 console.log(`Listening on http://${ip}:${port}`);
 
+
+// CODE FOR WEBSOCKETS -- not working
+// const WebSocketServer = require('websocket').server;
 // wsServer = new WebSocketServer({
 //   httpServer: server,
 //   autoAcceptConnections: false

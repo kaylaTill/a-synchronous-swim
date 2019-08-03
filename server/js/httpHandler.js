@@ -15,13 +15,20 @@ module.exports.initialize = (queue) => {
 module.exports.router = (req, res, next = ()=>{}) => {
   if (req.method === 'GET') {
     console.log(`Serving ${req.method} for url ${req.url}`);
-    var direction = createRandomSwimCommand();
-    console.log("SERVER IS SENDING DIRECTION: " + direction)
+    // var direction = createRandomSwimCommand();
+    // console.log("SERVER IS SENDING DIRECTION: " + direction)
+  } else if (req.method === 'POST') {
+    console.log('Serving request type ' + req.method + ' for url ' + req.url);
   } else {
     console.log('Serving request type ' + req.method + ' for url ' + req.url);
   }
   res.writeHead(200, headers);
-  res.write(direction)
+  res.write(
+    res.on('end', function (data) {
+        console.log(req.data);
+        console.log(str);
+      })
+  )
   res.end();
   next(); // invoke next() at the end of a request to help with testing!
 };
