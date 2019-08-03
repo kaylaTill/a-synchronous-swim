@@ -1,9 +1,15 @@
-
+// Here a keypress in the browser will move the swimmers
+// To do: add GET call to server for a random direction
 $('body').on('keydown', (event) => {
   var arrowPress = event.key.match(/Arrow(Up|Down|Left|Right)/);
   if (arrowPress) {
     var direction = arrowPress[1];
-    SwimTeam.move(direction.toLowerCase());
+
+    // GET CALL
+    $.get("http://localhost:3000/", function(data, status) {
+      console.log("Responding to server's directions: " + data);
+      SwimTeam.move(data.toLowerCase());
+    });
   }
 });
 

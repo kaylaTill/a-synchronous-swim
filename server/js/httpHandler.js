@@ -13,8 +13,20 @@ module.exports.initialize = (queue) => {
 };
 
 module.exports.router = (req, res, next = ()=>{}) => {
-  console.log('Serving request type ' + req.method + ' for url ' + req.url);
+  if (req.method === 'GET') {
+    console.log(`Serving ${req.method} for url ${req.url}`);
+    var direction = createRandomSwimCommand();
+    console.log("SERVER IS SENDING DIRECTION: " + direction)
+  } else {
+    console.log('Serving request type ' + req.method + ' for url ' + req.url);
+  }
   res.writeHead(200, headers);
+  res.write(direction)
   res.end();
   next(); // invoke next() at the end of a request to help with testing!
 };
+
+let createRandomSwimCommand = () => {
+  let commands = ['left', 'right', 'up', 'down'];
+  return commands[Math.floor(Math.random()*commands.length)];
+}

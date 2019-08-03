@@ -1,7 +1,4 @@
 (function() {
-
-  const serverUrl = 'http://127.0.0.1:3000';
-
   //
   // TODO: build the swim command fetcher here
   //
@@ -11,7 +8,7 @@
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
-  const ajaxFileUplaod = (file) => {
+  const ajaxFileUpload = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
